@@ -38,4 +38,4 @@ def icons():
     return render_template("/MajorFE/examples/icons.html")
 
 if __name__ == "__main__":
-    app.run(debug=True, host="192.168.0.104")
+    app.run(debug=True, host="192.168.234.59")
