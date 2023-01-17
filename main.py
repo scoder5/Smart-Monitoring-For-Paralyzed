@@ -37,5 +37,9 @@ def notifications():
 def icons():
     return render_template("/MajorFE/examples/icons.html")
 
+@app.route("/user")
+def user():
+    return render_template("/MajorFE/examples/user.html")
+
 if __name__ == "__main__":
     app.run(debug=True, host="192.168.234.59")
