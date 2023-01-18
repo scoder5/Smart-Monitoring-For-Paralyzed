@@ -1,2 +1,2 @@
 # Smart-Monitoring-For-Paralyzed
-Smart support system for the paralyzed patient
+We are a team of engineers trying to build a Smart support system for the paralyzed.
