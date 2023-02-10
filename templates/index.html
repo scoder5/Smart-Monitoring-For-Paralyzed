@@ -1,12 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Major Project</title>
+    <!-- displays site properly based on user's device -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>SmartGloves.io</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
+
 <body>
-    <h1>main page</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="images/WEBSITE LOGO.png" alt="CoolBrand" style="width: 80px;padding-right: 10px;">
+
+            <h2 style="color: aliceblue;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 25px;">
+                SMART GLOVES</h2>
+            <br><br>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                <div class="navbar-nav">
+                </div>
+                <div class="navbar-nav ms-auto" style="align-items: center;">
+                    <a href="#" class="nav-item nav-link active" onMouseOver="this.style.color='#FFFFFF'"
+                        onMouseOut="this.style.color='#42B1F1'">Home</a>
+                    <a href="#" class="nav-item nav-link" onMouseOver="this.style.color='#FFFFFF'"
+                        onMouseOut="this.style.color='#42B1F1'">About</a>
+                    <a href="#" class="nav-item nav-link" onMouseOver="this.style.color='#FFFFFF'"
+                        onMouseOut="this.style.color='#42B1F1'">Contact</a>
+                    <a href="#" class="nav-item nav-link" onMouseOver="this.style.color='#FFFFFF'"
+                        onMouseOut="this.style.color='#42B1F1'">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header class="hero">
+        <div class="hero__wave"></div>
+        <section class="hero__main container">
+            <img src="images/main centre logo.png" class="hero__img">
+
+            <h1 class="hero__title">Redefining accessibility for paralyzed patients</h1>
+            <p class="hero__paragraph">The SMART GLOVE is designed to help paralyzed patients regain control and perform
+                daily tasks more independently. With its built-in sensors, the glove measures the physiologoical
+                parameters of the user. </p>
+            <a href="#" class="hero__cta">
+                Get Started
+            </a>
+        </section>
+
+    </header>
+
+    <main class="main" style="background-color: #181F2A;">
+        <section class="about container">
+
+            <article class="about__item">
+                <figure class="about__picture">
+                    <img src="images/ECG.svg" class="about__img">
+                </figure>
+
+                <h3 class="about__title">ECG signals</h3>
+
+                <p class="about__paragraph"> Know the patients heart rate at your fingertips using ECG sensor.</p>
+            </article>
+
+            <article class="about__item">
+                <figure class="about__picture">
+                    <img src="images/TEMPERATURE.svg" class="about__img">
+                </figure>
+
+                <h3 class="about__title"> Temperature Level </h3>
+
+                <p class="about__paragraph"> Get the Real-time Temperature readings with our easy-to-use temperature
+                    sensor.
+                </p>
+            </article>
+
+
+
+
+            <article class="about__item">
+                <figure class="about__picture">
+                    <img src="images/monitoring.svg" class="about__img">
+                </figure>
+
+                <h3 class="about__title">Real-time monitoring</h3>
+
+                <p class="about__paragraph">
+                    Ensure the safety and well-being of patient with our Real-time monitoring camera.</p>
+            </article>
+
+            <article class="about__item">
+                <figure class="about__picture">
+                    <img src="images/movement.svg" class="about__img">
+                </figure>
+
+                <h3 class="about__title"> Gesture Based Command</Command>
+                </h3>
+
+                <p class="about__paragraph"> Empower paralyzed patients to communicate effectively with our gesture
+                    based command technology. </p>
+            </article>
+
+        </section>
+
+        <section class="productive container">
+
+            <figure class="productive__picture">
+                <img src="images/Doc-image.png" class="productive__img">
+            </figure>
+
+            <div class="productive__texts">
+
+                <h3 class="productive__title"> Diagnosis & Monitoring at your fingertips</h3>
+
+                <p class="productive__paragraph"> "Go hassle free with smart glove and avoid the long queue for
+                    diagnosis."</p>
+
+                <p class="productive__paragraph"> "The Smart Glove is a wearable device equipped with various sensors to
+                    accurately measure and monitor a range of physiological parameters for optimal health."</p>
+
+                <a href="#" class="productive__cta">
+                    See how the SMART GLOVE works
+                    <img src="images/icon-arrow.svg" class="productive__arrow">
+                </a>
+
+            </div>
+        </section>
+
+
+        <section class="join">
+            <div class="join__container container">
+                <h3 class="join__title"> Book It Now
+                </h3>
+                <p class="join__paragraph"> It only takes a minute to sign up and book the cutting-edge smart glove for
+                    your loved ones and lower the burden to monitor physiologoical parameters.</p>
+
+                <form class="join__form">
+                    <input type="text" placeholder="johndoe@example.com" class="join__input join__input--text">
+                    <input type="submit" value="Get It Now " class="join__input join__input--submit">
+                </form>
+            </div>
+        </section>
+
+    </main>
+    <footer id="sticky-footer" class="flex-shrink-0 py-2 bg-dark text-white-50">
+        <div class="container text-center">
+            <large>Copyright &copy; Smart Glove Pvt. LTD Siddaganga Institute of Technology</large>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
