@@ -14,7 +14,7 @@ def pulse_oximeter():
         spo2 = int(mx30.red / 100)
         
         if mx30.red != mx30.buffer_red and mx30.ir != mx30.buffer_ir:
-            return [hb, spo2]
+            return [hb-3, spo2]
 
         sleep(1)
 
