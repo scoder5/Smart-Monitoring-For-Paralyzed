@@ -1,44 +1,55 @@
+from mpu6050 import mpu6050
+import time
+import RPi.GPIO as GPIO
+
 import smbus
-from time import sleep
+GPIO.setmode(GPIO.BCM)
+# Open the I2C bus on bus 4
 
-# I2C bus address of the accelerometer
-address = 0x1d
+mpu = mpu6050(0x68,4)
 
-# Initialize I2C bus
-bus = smbus.SMBus(1)
+while True:
+    print("Temp : "+str(mpu.get_temp()))
+    print()
 
-# Set the range of the accelerometer to +/- 2g
-bus.write_byte_data(address, 0x2b, 0x00)
+    accel_data = mpu.get_accel_data()
+    print("Acc X : "+str(accel_data['x']))
+    print("Acc Y : "+str(accel_data['y']))
+    print("Acc Z : "+str(accel_data['z']))
+    print()
+    x = accel_data['x']
+    y = accel_data['y']
+    z = accel_data['z']
+    
+    if x > 0 and y > 0 and z > 0:
+        print("Output: 1")
+    elif x > 0 and y > 0 and z < 0:
+        print("Output: 2")
+    elif x > 0 and y < 0 and z > 0:
+        print("Output: 3")
+    elif x < 0 and y > 0 and z > 0:
+        print("Output: 4")
+    else:
+        print("No Output")
 
-
-def Acc():
-    while True:
-        # Read raw data from the accelerometer
-        data = bus.read_i2c_block_data(address, 0x00, 6)
-
-        # Convert raw data to g values
-        x = data[0] * 256 + data[1]
-        if x > 32767:
-            x -= 65536
-
-        y = data[2] * 256 + data[3]
-        if y > 32767:
-            y -= 65536
-
-        z = data[4] * 256 + data[5]
-        if z > 32767:
-            z -= 65536
-
-        x = x / 16384.0
-        y = y / 16384.0
-        z = z / 16384.0
-
-        # Print the acceleration values
-        print("X: " + str(x) + " g")
-        print("Y: " + str(y) + " g")
-        print("Z: " + str(z) + " g")
-
-        # Wait for a moment before reading the next data
-        sleep(0.5)
-
-Acc()
+    gyro_data = mpu.get_gyro_data()
+    print("Gyro X : "+str(gyro_data['x']))
+    print("Gyro Y : "+str(gyro_data['y']))
+    print("Gyro Z : "+str(gyro_data['z']))
+    print()
+    x1 = gyro_data['x']
+    y1= gyro_data['y']
+    z1 = gyro_data['z']
+    
+    if x1 > 0 and y1 > 0 and z1 > 0:
+        print("G: 1")
+    elif x1 > 0 and y1 > 0 and z1 < 0:
+        print("G: 2")
+    elif x1 > 0 and y1 < 0 and z1 > 0:
+        print("G: 3")
+    elif x1 < 0 and y1 > 0 and z1 > 0:
+        print("G: 4")
+    else:
+        print("No GOutput")
+    print("-------------------------------")
+    time.sleep(1)
