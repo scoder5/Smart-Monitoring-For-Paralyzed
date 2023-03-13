@@ -52,4 +52,4 @@ while True:
     else:
         print("No GOutput")
     print("-------------------------------")
-    time.sleep(1)
+    time.sleep(3)
