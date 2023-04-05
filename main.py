@@ -37,9 +37,18 @@ def notifications():
 def icons():
     return render_template("/MajorFE/examples/icons.html")
 
-@app.route("/user")
-def user():
-    return render_template("/MajorFE/examples/user.html")
+# @app.route("/user")
+# def user():
+#     return render_template("/MajorFE/examples/user.html")
+
+@app.route("/custom")
+def custom():
+    return render_template("/MajorFE/examples/custom.html")
+
+@app.route("/admin")
+def admin():
+    res = temp()
+    return render_template("/MajorFE/examples/admin.html",  temperature=res, oxygen=pulse_oximeter())
 
 if __name__ == "__main__":
     app.run(debug=True, host="192.168.1.163", port=8080)
