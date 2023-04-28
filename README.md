@@ -37,6 +37,9 @@ The Smart Glove with Gesture-Based Communication and Monitoring of Paralyzed Pat
   
 - Access the application in your browser at http://localhost:8080.
 
+## Demo : 
+
+<img align="center" src="https://github.com/scoder5/Frontend1.png" alt="scoder5" width="1000" />
 
 # Contributors
 
