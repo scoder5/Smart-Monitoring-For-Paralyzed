@@ -39,7 +39,13 @@ The Smart Glove with Gesture-Based Communication and Monitoring of Paralyzed Pat
 
 # Screenshots: 
 
+## Frontend:
+
 <img align="center" src="https://github.com/scoder5/Smart-Monitoring-For-Paralyzed/blob/main/Frontend1.png" alt="scoder5" width="1000" />
+<br>
+<img align="center" src="https://github.com/scoder5/Smart-Monitoring-For-Paralyzed/blob/main/Frontend2.png" alt="scoder5" width="1000" />
+<br>
+<img align="center" src="https://github.com/scoder5/Smart-Monitoring-For-Paralyzed/blob/main/dashboard.png" alt="scoder5" width="1000" />
 
 # Contributors
 
