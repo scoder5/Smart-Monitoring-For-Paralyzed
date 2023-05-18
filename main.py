@@ -50,5 +50,13 @@ def admin():
     res = temp()
     return render_template("/MajorFE/examples/admin.html",  temperature=res, oxygen=pulse_oximeter())
 
+@app.route("/Signup")
+def Signup():
+    return render_template("/MajorFE/examples/Signup.html")
+
+@app.route("/Login")
+def Login():
+    return render_template("/MajorFE/examples/Login.html")
+
 if __name__ == "__main__":
     app.run(debug=True, host="192.168.0.103", port=8080)
