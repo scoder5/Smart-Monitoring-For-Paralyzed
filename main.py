@@ -24,7 +24,7 @@ app.secret_key = "secret"
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("/examples/index.html")
 
 
 @app.route("/dashboard")
@@ -36,11 +36,6 @@ def dashboard():
 @app.route("/notifications")
 def notifications():
     return render_template("/examples/notifications.html")
-
-
-@app.route("/icons")
-def icons():
-    return render_template("/examples/icons.html")
 
 
 @app.route("/custom")
@@ -56,6 +51,7 @@ def signup():
 @app.route("/login")
 def login():
     return render_template("/examples/login.html")
+
 
 
 if __name__ == "__main__":

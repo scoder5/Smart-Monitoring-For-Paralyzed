@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base1.html' %}
 
-<head>
-    <title>Login</title>
-</head>
+{% block content %}
 
-<body>
     <h2>Login</h2>
     <form action="/login" method="POST">
         <label>Email:</label><br>
@@ -15,6 +11,5 @@
         <input type="submit" value="Login">
     </form>
     <p>Don't have an account? <a href="/signup">Signup here</a></p>
-</body>
 
-</html>
+{% endblock %}
