@@ -2,14 +2,72 @@
 
 {% block content %}
 
-    <h2>Signup</h2>
-    <form action="/signup" method="POST">
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
-        <input type="submit" value="Signup">
-    </form>
-    <p>Already have an account? <a href="/login">Login here</a></p>
+<style>
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    form {
+        max-width: 400px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #42B1F1;
+        color: #fff;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #1E90FF;
+    }
+
+    p {
+        margin-top: 20px;
+    }
+
+    a {
+        color: #42B1F1;
+    }
+</style>
+
+<header class="hero">
+    <div class="hero__wave"></div>
+    <section class="hero__main container">
+
+        <h2>Signup</h2>
+        <center>
+            <form action="/signup" method="POST">
+                <label>Email:</label><br>
+                <input type="email" name="email" required><br><br>
+                <label>Password:</label><br>
+                <input type="password" name="password" required><br><br>
+                <input type="submit" value="Signup">
+            </form>
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </center>
+    </section>
+</header>
+
 
 {% endblock %}
