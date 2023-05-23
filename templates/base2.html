@@ -259,6 +259,11 @@
                         $("#here3").load(window.location.href + " #here3");
                     }, 3000);
                 });
+                $(document).ready(function () {
+                    setInterval(function () {
+                        $("#here0").load(window.location.href + " #here0");
+                    }, 3000);
+                });
 
                 $('.fixed-plugin a').click(function (event) {
                     if ($(this).hasClass('switch-trigger')) {

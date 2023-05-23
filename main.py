@@ -1,10 +1,11 @@
 # IMPORTS
 from flask import Flask, render_template, redirect, request, redirect, session
-from dht import temp
-from testMAX30100 import pulse_oximeter
 import pyrebase
 import requests
 from config import Config
+from dht import temp
+from testMAX30100 import pulse_oximeter
+from acc import Acc
 
 
 app = Flask(__name__)
@@ -34,7 +35,9 @@ def home():
 @app.route("/dashboard")
 def dashboard():
     res = temp()
-    return render_template("/examples/dashboard.html",  temperature=res, oxygen=pulse_oximeter())
+    Data = Acc()
+    oxygen = pulse_oximeter()
+    return render_template("/examples/dashboard.html",  temperature=res, oxygen=oxygen, Data=Data)
 
 
 @app.route("/notifications")
