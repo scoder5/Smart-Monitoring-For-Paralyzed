@@ -1,9 +1,11 @@
+# IMPORTS
 from flask import Flask, render_template, redirect, request, redirect, session
 from dht import temp
 from testMAX30100 import pulse_oximeter
 import pyrebase
 import requests
 from config import Config
+
 
 app = Flask(__name__)
 
@@ -21,6 +23,8 @@ firebase = pyrebase.initialize_app(Config)
 auth = firebase.auth()
 db = firebase.database()
 app.secret_key = "secret"
+
+
 
 @app.route("/")
 def home():

@@ -92,5 +92,3 @@ def pulse_oximeter():
             return [hb, spo2]
 
         sleep(1)
-
-print(pulse_oximeter())
