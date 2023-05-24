@@ -1,12 +1,11 @@
 # IMPORTS
-from flask import Flask, render_template, redirect, request, redirect, session
+from flask import Flask, render_template, redirect, request, redirect, session, url_for
 import pyrebase
 import requests
 from config import Config
 from dht import temp
 from testMAX30100 import pulse_oximeter
 from acc import Acc
-
 
 app = Flask(__name__)
 
@@ -24,7 +23,6 @@ firebase = pyrebase.initialize_app(Config)
 auth = firebase.auth()
 db = firebase.database()
 app.secret_key = "secret"
-
 
 
 @app.route("/")
@@ -45,8 +43,22 @@ def notifications():
     return render_template("/examples/notifications.html")
 
 
-@app.route("/custom")
+@app.route("/custom", methods = ["GET", "POST"])
 def custom():
+
+    if request.method == "POST":
+        first = request.form["first"]
+        second = request.form["second"]
+
+        data = {
+            'first' : first,
+            'second' : second
+        }
+
+        db.child('users').push(data)
+
+        return redirect(url_for('dashboard'))
+
     return render_template("/examples/custom.html")
 
 

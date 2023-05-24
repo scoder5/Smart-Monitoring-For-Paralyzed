@@ -1,15 +1,29 @@
 from mpu6050 import mpu6050
-from time import sleep
 import RPi.GPIO as GPIO
+import pyrebase
+from config import Config
+
+apiKey = Config["apiKey"]
+authDomain = Config["authDomain"]
+databaseURL = Config["databaseURL"]
+projectId = Config["projectId"]
+storageBucket = Config["storageBucket"]
+messagingSenderId = Config["messagingSenderId"]
+appId = Config["appId"]
+measurementId = Config["measurementId"]
+
+firebase = pyrebase.initialize_app(Config)
+db = firebase.database()
 
 GPIO.setmode(GPIO.BCM)
 mpu = mpu6050(0x68, 4)
 
 def Acc():
-    while True:
-        # print("Temp : "+str(mpu.get_temp()))
-        # print()
+    user_keys = db.child("users").get().val().keys()
+    recent_key = max(user_keys)
+    recent_data = db.child("users").child(recent_key).get().val()
 
+    while True:
         accel_data = mpu.get_accel_data()
 
         x = accel_data['x']+2.1021090576171875
@@ -27,18 +41,14 @@ def Acc():
         # print("Acc Z : "+str(z))
         # print()
         if x > 0 and y > 0 and z > -1.5:
-            return "At Rest"
+            return recent_data['first']
             # print("At rest")
         elif x >= 4 and y <= -2 and z <= -1:
-            return "Please call Emergency Services"
+            return recent_data['second']
             # print("Please call Emergency Services")
         elif (x > 0 or x < 0) and y > 0 and z < 0:
-            return "Need Food/Water"
+            return recent_data['second']
             # print("Need Food/Water")
         else:
-            return "At Rest"
+            return recent_data['first']
             # print("At Rest")
-
-        # sleep(15)
-
-# Acc()

@@ -3,35 +3,33 @@
 {% block content %}
 
 <div class="content" style="display: inline-block;justify-content:center;margin-left: 20rem;">
-    <div class="row">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" style="width:18rem;height:10rem;"
-                src="https://i.ibb.co/2PQJGLn/Untitled-design-1.png" alt="Card image cap">
-            <div class="card-body">
-                <center>
-                    <p class="card-text">Finger up Command</p>
-                    <form action="">
-                        <input style="text-align: center;width:15rem;" id="emergency"
-                            placeholder="Enter a emergency message">
-                    </form>
-                </center>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;margin-left: 2rem;">
-            <img class="card-img-top" style="width:18rem;height:10rem;"
-                src="https://i.ibb.co/XYZG1Kb/Untitled-design.png" alt="Card image cap">
-            <div class="card-body">
-                <center>
-                    <p class="card-text">Finger Down Command</p>
-                    <form action="">
-                        <input style="text-align: center;" type="number" size="1" placeholder="Enter a command">
-                    </form>
-                </center>
-            </div>
-        </div>
 
-    </div>
-    <button style="margin-left:15rem" type="submit">Submit</button>
+    <form action="/custom" method="post">
+        <div class="row">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" style="width:18rem;height:10rem;"
+                    src="https://i.ibb.co/2PQJGLn/Untitled-design-1.png" alt="Card image cap">
+                <div class="card-body">
+                    <center>
+                        <p class="card-text">Finger up Command</p>
+                        <input style="text-align: center;width:15rem;" id="emergency"
+                            placeholder="Enter a command" name="first">
+                    </center>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;margin-left: 2rem;">
+                <img class="card-img-top" style="width:18rem;height:10rem;"
+                    src="https://i.ibb.co/XYZG1Kb/Untitled-design.png" alt="Card image cap">
+                <div class="card-body">
+                    <center>
+                        <p class="card-text">Finger Down Command</p>
+                        <input style="text-align: center;" placeholder="Enter a command" name="second">
+                    </center>
+                </div>
+            </div>
+        </div>
+        <button style="margin-left:15rem" type="submit">Submit</button>
+    </form>
 
     <div class="card" style="margin-top:2rem;margin-left:0rem;max-width: 36rem;">
         <h2 class="card-header">
