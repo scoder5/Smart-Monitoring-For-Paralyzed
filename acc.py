@@ -41,14 +41,14 @@ def Acc():
         # print("Acc Z : "+str(z))
         # print()
         if x > 0 and y > 0 and z > -1.5:
-            return recent_data['first']
+            return "At Rest"
             # print("At rest")
         elif x >= 4 and y <= -2 and z <= -1:
-            return recent_data['second']
+            return recent_data['first']
             # print("Please call Emergency Services")
         elif (x > 0 or x < 0) and y > 0 and z < 0:
             return recent_data['second']
             # print("Need Food/Water")
         else:
-            return recent_data['first']
+            return "At Rest"
             # print("At Rest")
