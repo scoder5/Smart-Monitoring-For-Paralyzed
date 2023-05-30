@@ -42,6 +42,15 @@
         background-color: #1E90FF;
     }
 
+    #number {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
     p {
         margin-top: 20px;
     }
@@ -60,9 +69,11 @@
             <form action="/signup" method="POST">
                 <label>Email:</label><br>
                 <input type="email" name="email" required><br><br>
+                <label>Phone Number:</label><br>
+                <input type="number" name="number" id="number" required><br><br>
                 <label>Password:</label><br>
                 <input type="password" name="password" required><br><br>
-                <input type="submit" value="Signup">
+                <input type="submit" value="submit">
             </form>
             <p>Already have an account? <a href="/login">Login here</a></p>
         </center>

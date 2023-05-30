@@ -32,54 +32,70 @@ def home():
 
 @app.route("/dashboard")
 def dashboard():
-    res = temp()
-    Data = Acc()
-    oxygen = pulse_oximeter()
-    return render_template("/examples/dashboard.html",  temperature=res, oxygen=oxygen, Data=Data)
+    if 'logged_in' in session and session['logged_in']:
+        res = temp()
+        Data = Acc()
+        oxygen = pulse_oximeter()
+        return render_template("/examples/dashboard.html",  temperature=res, oxygen=oxygen, Data=Data)
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route("/notifications")
 def notifications():
-    return render_template("/examples/notifications.html")
+    if 'logged_in' in session and session['logged_in']:
+        return render_template("/examples/notifications.html")
+    else:
+        return redirect(url_for('login'))
 
 
-@app.route("/custom", methods = ["GET", "POST"])
+@app.route("/custom", methods=["GET", "POST"])
 def custom():
+    if 'logged_in' in session and session['logged_in']:
+        if request.method == "POST":
+            first = request.form["first"]
+            second = request.form["second"]
 
-    if request.method == "POST":
-        first = request.form["first"]
-        second = request.form["second"]
+            data = {
+                'first': first,
+                'second': second
+            }
 
-        data = {
-            'first' : first,
-            'second' : second
-        }
+            db.child('users').push(data)
 
-        db.child('users').push(data)
+            return redirect(url_for('dashboard'))
 
-        return redirect(url_for('dashboard'))
-
-    return render_template("/examples/custom.html")
+        return render_template("/examples/custom.html")
+    else:
+        return redirect(url_for('login'))
 
 
-@app.route("/signup", methods = ["GET", "POST"])
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
-
     if request.method == "POST":
         email = request.form['email']
         password = request.form['password']
+        number = request.form['number']
+
+        data = {
+                'number': number, 
+                'email' : email
+            }
+
+        db.child('PhoneNumbers').push(data)
 
         if len(password) < 6:
             return "Password should be at least 6 characters!"
-        
+
         try:
             user = auth.create_user_with_email_and_password(email, password)
+
             if user:
                 session['user'] = email
                 return redirect('/dashboard')
             else:
                 return "User creation failed"
-            
+
         except requests.exceptions.HTTPError as e:
             error_json = e.args[1]
             error_message = error_json['error']['message']
@@ -88,23 +104,21 @@ def signup():
             else:
                 return str(e)
 
-
     return render_template("/examples/signup.html")
 
 
-
-@app.route("/login", methods = ["GET", "POST"])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
 
         try:
             user = auth.sign_in_with_email_and_password(email, password)
+            session['logged_in'] = True
             session['user'] = email
             return redirect('/dashboard')
-        
+
         except requests.exceptions.HTTPError as e:
             error_json = e.args[1]
             error_message = error_json['error']['message']
@@ -115,15 +129,16 @@ def login():
             else:
                 return str(e)
 
-    return render_template("/examples/login.html")
+    return render_template('/examples/login.html')
 
 
 
-@app.route("/logout")
+@app.route('/logout')
 def logout():
+    session.pop('logged_in', None)
     session.pop('user', None)
-    return redirect('/')
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="192.168.0.104", port=8080)
+    app.run(debug=True, host="192.168.0.103", port=8080)
