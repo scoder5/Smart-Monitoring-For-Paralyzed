@@ -1,6 +1,7 @@
 import pyrebase
-from config import Config, sender_id, api_key
-import requests
+from config import Config, sender_id, api_key, user, passw
+import smtplib
+from email.message import EmailMessage
 
 apiKey = Config["apiKey"]
 authDomain = Config["authDomain"]
@@ -18,35 +19,27 @@ user_keys = db.child("PhoneNumbers").get().val().keys()
 recent_key = max(user_keys)
 recent_data = db.child("PhoneNumbers").child(recent_key).get().val()
 
-def send_sms(api_key, sender_id, phone_number, message):
-    url = "https://www.fast2sms.com/dev/bulk"
 
-    payload = {
-        "sender_id": sender_id,
-        "message": message,
-        "language": "english",
-        "route": "p",
-        "numbers": phone_number,
-    }
+user = user
+passw = passw
 
-    headers = {
-        "authorization": api_key,
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Cache-Control": "no-cache",
-    }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+def email_alert(subject, body, to):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['subject'] = subject
+    msg['to'] = to
+    msg['from'] = user
 
-    if response.status_code == 200:
-        return "SMS sent successfully"
-    else:
-        return "Failed to send SMS"
-    
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login(user, passw)
+    server.send_message(msg)
+    server.quit()
+
+
 api_key = api_key
 sender_id = sender_id
 phone_number = recent_data['number']
 email = recent_data['email']
 message = "Emergency !!"
-
-res = send_sms(api_key, sender_id, phone_number, message)
-print(res)
