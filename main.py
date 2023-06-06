@@ -1,14 +1,17 @@
 # IMPORTS
-from flask import Flask, render_template, redirect, request, redirect, session, url_for
+from flask import Flask, render_template, redirect, redirect, session, url_for, request, Response
 import pyrebase
 import requests
+import cv2
 from config import Config
 from dht import temp
 from testMAX30100 import pulse_oximeter
 from acc import Acc
 
+# Flask
 app = Flask(__name__)
 
+# Firebase Credentials
 apiKey = Config["apiKey"]
 authDomain = Config["authDomain"]
 databaseURL = Config["databaseURL"]
@@ -17,6 +20,23 @@ storageBucket = Config["storageBucket"]
 messagingSenderId = Config["messagingSenderId"]
 appId = Config["appId"]
 measurementId = Config["measurementId"]
+
+
+# OpenCV
+def generate_frames():
+    camera = cv2.VideoCapture(0)
+
+    while True:
+        success, frame = camera.read()
+        if not success:
+            break
+
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+    
+    camera.release()
 
 
 firebase = pyrebase.initialize_app(Config)
@@ -39,6 +59,22 @@ def dashboard():
         return render_template("/examples/dashboard.html",  temperature=res, oxygen=oxygen, Data=Data)
     else:
         return redirect(url_for('login'))
+
+
+
+@app.route("/live")
+def live():
+    if 'logged_in' in session and session['logged_in']:
+        return render_template("/examples/live_monitoring.html")
+    else:
+        return redirect(url_for('login'))
+    
+
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')    
+
 
 
 @app.route("/notifications")
@@ -78,9 +114,9 @@ def signup():
         number = request.form['number']
 
         data = {
-                'number': number, 
-                'email' : email
-            }
+            'number': number,
+            'email': email
+        }
 
         db.child('PhoneNumbers').push(data)
 
@@ -132,7 +168,6 @@ def login():
     return render_template('/examples/login.html')
 
 
-
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
@@ -141,4 +176,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="192.168.0.103", port=8080)
+    app.run(debug=True, host="192.168.0.100", port=8080)

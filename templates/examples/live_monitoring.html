@@ -1,0 +1,26 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+<style>
+    img {
+        position: relative;
+        left: 60px;
+        top: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        position: relative;
+        left: 20px;
+    }
+</style>
+
+<div class="container my-5">
+    <h1>Live Monitoring</h1>
+    <center>
+        <img src="{{ url_for('video_feed') }}" width="840" height="490">
+    </center>
+</div>
+
+{% endblock %}
