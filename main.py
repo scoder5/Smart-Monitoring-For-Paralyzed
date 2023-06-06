@@ -69,6 +69,15 @@ def live():
     else:
         return redirect(url_for('login'))
     
+    
+
+@app.route("/emotion")
+def emotion():
+    if 'logged_in' in session and session['logged_in']:
+        return render_template("/examples/emotion.html")
+    else:
+        return redirect(url_for('login'))
+    
 
 
 @app.route('/video_feed')

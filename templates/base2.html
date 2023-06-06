@@ -19,9 +19,9 @@
 </head>
 
 <body class="">
-    
+
     <div class="wrapper">
-        
+
         <div class="sidebar">
             <div class="sidebar-wrapper">
                 <div class="logo">
@@ -55,6 +55,12 @@
                         <a href="/live">
                             <i class="tim-icons icon-triangle-right-17"></i>
                             <p>Live Monitoring</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/emotion">
+                            <i class="tim-icons icon-atom"></i>
+                            <p>Emotion Detection</p>
                         </a>
                     </li>
                 </ul>
@@ -121,7 +127,9 @@
                                             alt="Profile Photo">
                                     </div>
                                     <b class="caret d-none d-lg-block d-xl-block"></b>
-                                    <a href="/logout"><p class="d-lg-none">Log out</p></a>
+                                    <a href="/logout">
+                                        <p class="d-lg-none">Log out</p>
+                                    </a>
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li class="nav-link"><a href="javascript:void(0)"
@@ -138,7 +146,7 @@
                     </div>
                 </div>
             </nav>
-            
+
             <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog"
                 aria-labelledby="searchModal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -216,7 +224,7 @@
             </ul>
         </div>
     </div>
-    
+
     <!--   Core JS Files   -->
     <script src="{{ url_for('static', filename = '/js/core/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename = '/js/core/popper.min.js') }}"></script>
@@ -233,6 +241,8 @@
     <script src="{{ url_for('static', filename = '/js/black-dashboard.min.js') }}"></script>
     <!-- Black Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ url_for('static', filename = '/demo/demo.js') }}"></script>
+
+
     <script>
         $(document).ready(function () {
             $().ready(function () {
