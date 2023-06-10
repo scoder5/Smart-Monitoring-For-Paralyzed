@@ -40,10 +40,10 @@ def Acc():
         if x > 0 and y > 0 and z > -1.5:
             return "At Rest"
         elif x >= 4 and y <= -2 and z <= -1:
-            email_alert("Hey!", recent_data['first'], email)
+            email_alert("The Patient Requires Attention", recent_data['first'], email)
             return recent_data['first']
         elif (x > 0 or x < 0) and y > 0 and z < 0:
-            email_alert("Hey!", recent_data['second'], email)
+            email_alert("The Patient Requires Attention", recent_data['second'], email)
             return recent_data['second']
         else:
             return "At Rest"
