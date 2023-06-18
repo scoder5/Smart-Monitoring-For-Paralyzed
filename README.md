@@ -1,7 +1,7 @@
 # STILL WORK IN PROGRESS
 # Smart-Monitoring-For-Paralyzed
 
-The Smart Glove with Gesture-Based Communication and Monitoring of Paralyzed Patients is a project that aims to assist paralyzed patients in communicating with their caregivers and monitoring their movements using a smart glove equipped with sensors and communication modules. The project is built using HTML, CSS, JavaScript, Python3, Flask, and Firebase technologies.
+The Smart Glove with Gesture-Based Communication and Monitoring of Paralyzed Patients is a project that aims to assist paralyzed patients in communicating with their caregivers and monitoring their movements using a smart glove equipped with sensors and communication modules. The project is built using HTML, CSS, JavaScript, Python3, Flask, OpenCV and Firebase technologies.
 
 ## Features 😎
 
@@ -19,6 +19,7 @@ The Smart Glove with Gesture-Based Communication and Monitoring of Paralyzed Pat
 - Flask
 - Python3
 - Firebase
+- OpenCV
 
 ## Server
 
