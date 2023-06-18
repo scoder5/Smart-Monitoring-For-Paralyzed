@@ -3,13 +3,17 @@ from flask import Flask, render_template, redirect, redirect, session, url_for, 
 import pyrebase
 import requests
 import cv2
+from flask_socketio import SocketIO, emit
 from config import Config
 from dht import temp
 from testMAX30100 import pulse_oximeter
 from acc import Acc
 
+
 # Flask
 app = Flask(__name__)
+socketio = SocketIO(app)
+
 
 # Firebase Credentials
 apiKey = Config["apiKey"]
@@ -69,7 +73,7 @@ def live():
     else:
         return redirect(url_for('login'))
     
-    
+
 
 @app.route("/emotion")
 def emotion():
@@ -77,6 +81,17 @@ def emotion():
         return render_template("/examples/emotion.html")
     else:
         return redirect(url_for('login'))
+
+
+@socketio.on('connect')
+def test_connect():
+    print("SOCKET CONNECTED")
+
+
+
+@socketio.on('my event')
+def handle_my_custom_event(json, methods=['GET', 'POST']):
+    print('received my event: '+ str(json))
     
 
 
@@ -185,4 +200,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="192.168.0.105", port=8080)
+    # app.run(debug=True, host="192.168.0.105", port=8080)
+    socketio.run(app, host="192.168.0.105", port=8080)
