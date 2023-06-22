@@ -10,7 +10,7 @@ def pulse_oximeter():
 
         mx30.ir, mx30.red
 
-        hb = int(mx30.ir / 100)
+        hb = int(mx30.ir / 100)-12
         if hb<0:
             hb=0;
         if hb>0 and hb<10:
@@ -91,9 +91,10 @@ def pulse_oximeter():
             spo2=95+spo2-125;
         if spo2>130:
             spo2=0;
-        
+        if(spo2>=100):
+          spo2=0;
         if mx30.red != mx30.buffer_red and mx30.ir != mx30.buffer_ir:
-            return [hb - 12, spo2]
+            return [hb , spo2]
             # print(hb, spo2)
 
 #         sleep(3)
