@@ -1,5 +1,20 @@
 # from time import sleep
 import max30100
+import pyrebase
+from config import Config
+from SmsEmail import email_alert, email
+
+apiKey = Config["apiKey"]
+authDomain = Config["authDomain"]
+databaseURL = Config["databaseURL"]
+projectId = Config["projectId"]
+storageBucket = Config["storageBucket"]
+messagingSenderId = Config["messagingSenderId"]
+appId = Config["appId"]
+measurementId = Config["measurementId"]
+
+firebase = pyrebase.initialize_app(Config)
+db = firebase.database()
 
 mx30 = max30100.MAX30100()
 mx30.enable_spo2()
@@ -102,7 +117,10 @@ def pulse_oximeter():
                 hb=60
             if hb>100:
                 hb=0
-            return [hb , spo2]
+
+            if 60 < hb < 100 or 95 < spo2 < 100:
+                email_alert("Emergency", "Critical Alert", email)
+            return [hb, spo2]
             
 
 #         sleep(3)
