@@ -24,6 +24,6 @@ def temp():
         dht = dht11.DHT11(pin=17)
         result = dht.read()
         if result.is_valid():
-            if 36.5 < result.temperature < 37.5:
+            if 32 < result.temperature < 37.5:
                 email_alert("Emergency", "Critical Alert", email)
             return result.temperature
